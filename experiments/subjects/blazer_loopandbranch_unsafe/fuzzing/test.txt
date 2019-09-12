@@ -1,0 +1,1394 @@
+Compiled from "MoreSanity.java"
+class MoreSanity {
+  MoreSanity();
+    Code:
+       0: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+       3: ldc           #14                 // int 42123
+       5: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+       8: ixor
+       9: dup2
+      10: baload
+      11: iconst_1
+      12: iadd
+      13: i2b
+      14: bastore
+      15: sipush        21061
+      18: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      21: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      24: lconst_1
+      25: ladd
+      26: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      29: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      32: ldc           #23                 // int 42153
+      34: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      37: ixor
+      38: dup2
+      39: baload
+      40: iconst_1
+      41: iadd
+      42: i2b
+      43: bastore
+      44: sipush        21076
+      47: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      50: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      53: lconst_1
+      54: ladd
+      55: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      58: aload_0
+      59: invokespecial #25                 // Method java/lang/Object."<init>":()V
+      62: return
+      63: nop
+      64: nop
+      65: nop
+      66: nop
+      67: nop
+      68: nop
+      69: nop
+      70: nop
+      71: nop
+      72: nop
+      73: nop
+      74: nop
+      75: nop
+      76: nop
+      77: nop
+      78: nop
+      79: nop
+      80: nop
+      81: nop
+      82: nop
+      83: nop
+      84: nop
+      85: nop
+      86: nop
+      87: nop
+      88: nop
+      89: nop
+      90: nop
+      91: athrow
+
+  public static boolean array_safe(int[], int);
+    Code:
+       0: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+       3: ldc           #33                 // int 42950
+       5: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+       8: ixor
+       9: dup2
+      10: baload
+      11: iconst_1
+      12: iadd
+      13: i2b
+      14: bastore
+      15: sipush        21475
+      18: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      21: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      24: lconst_1
+      25: ladd
+      26: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      29: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      32: ldc           #34                 // int 45130
+      34: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      37: ixor
+      38: dup2
+      39: baload
+      40: iconst_1
+      41: iadd
+      42: i2b
+      43: bastore
+      44: sipush        22565
+      47: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      50: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      53: lconst_1
+      54: ladd
+      55: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      58: iload_1
+      59: ifge          258
+      62: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      65: ldc           #35                 // int 4704
+      67: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      70: ixor
+      71: dup2
+      72: baload
+      73: iconst_1
+      74: iadd
+      75: i2b
+      76: bastore
+      77: sipush        2352
+      80: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      83: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      86: lconst_1
+      87: ladd
+      88: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      91: aload_0
+      92: arraylength
+      93: iconst_1
+      94: isub
+      95: istore_3
+      96: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      99: ldc           #36                 // int 11738
+     101: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     104: ixor
+     105: dup2
+     106: baload
+     107: iconst_1
+     108: iadd
+     109: i2b
+     110: bastore
+     111: sipush        5869
+     114: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     117: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     120: lconst_1
+     121: ladd
+     122: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     125: goto          193
+     128: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     131: ldc           #37                 // int 43834
+     133: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     136: ixor
+     137: dup2
+     138: baload
+     139: iconst_1
+     140: iadd
+     141: i2b
+     142: bastore
+     143: sipush        21917
+     146: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     149: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     152: lconst_1
+     153: ladd
+     154: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     157: aload_0
+     158: iload_3
+     159: iaload
+     160: istore_2
+     161: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     164: ldc           #38                 // int 4619
+     166: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     169: ixor
+     170: dup2
+     171: baload
+     172: iconst_1
+     173: iadd
+     174: i2b
+     175: bastore
+     176: sipush        2309
+     179: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     182: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     185: lconst_1
+     186: ladd
+     187: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     190: iinc          3, -1
+     193: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     196: ldc           #39                 // int 16300
+     198: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     201: ixor
+     202: dup2
+     203: baload
+     204: iconst_1
+     205: iadd
+     206: i2b
+     207: bastore
+     208: sipush        8150
+     211: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     214: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     217: lconst_1
+     218: ladd
+     219: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     222: iload_3
+     223: ifge          128
+     226: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     229: ldc           #40                 // int 6220
+     231: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     234: ixor
+     235: dup2
+     236: baload
+     237: iconst_1
+     238: iadd
+     239: i2b
+     240: bastore
+     241: sipush        3110
+     244: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     247: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     250: lconst_1
+     251: ladd
+     252: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     255: goto          423
+     258: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     261: ldc           #41                 // int 13509
+     263: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     266: ixor
+     267: dup2
+     268: baload
+     269: iconst_1
+     270: iadd
+     271: i2b
+     272: bastore
+     273: sipush        6754
+     276: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     279: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     282: lconst_1
+     283: ladd
+     284: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     287: iconst_0
+     288: istore_3
+     289: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     292: ldc           #42                 // int 16287
+     294: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     297: ixor
+     298: dup2
+     299: baload
+     300: iconst_1
+     301: iadd
+     302: i2b
+     303: bastore
+     304: sipush        8143
+     307: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     310: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     313: lconst_1
+     314: ladd
+     315: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     318: goto          388
+     321: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     324: ldc           #43                 // int 9956
+     326: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     329: ixor
+     330: dup2
+     331: baload
+     332: iconst_1
+     333: iadd
+     334: i2b
+     335: bastore
+     336: sipush        4978
+     339: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     342: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     345: lconst_1
+     346: ladd
+     347: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     350: aload_0
+     351: iload_3
+     352: iaload
+     353: iconst_2
+     354: idiv
+     355: istore_2
+     356: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     359: ldc           #44                 // int 58043
+     361: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     364: ixor
+     365: dup2
+     366: baload
+     367: iconst_1
+     368: iadd
+     369: i2b
+     370: bastore
+     371: sipush        29021
+     374: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     377: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     380: lconst_1
+     381: ladd
+     382: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     385: iinc          3, 1
+     388: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     391: ldc           #45                 // int 12134
+     393: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     396: ixor
+     397: dup2
+     398: baload
+     399: iconst_1
+     400: iadd
+     401: i2b
+     402: bastore
+     403: sipush        6067
+     406: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     409: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     412: lconst_1
+     413: ladd
+     414: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     417: iload_3
+     418: aload_0
+     419: arraylength
+     420: if_icmplt     321
+     423: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     426: ldc           #46                 // int 7794
+     428: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     431: ixor
+     432: dup2
+     433: baload
+     434: iconst_1
+     435: iadd
+     436: i2b
+     437: bastore
+     438: sipush        3897
+     441: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     444: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     447: lconst_1
+     448: ladd
+     449: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     452: iconst_0
+     453: ireturn
+     454: nop
+     455: nop
+     456: nop
+     457: nop
+     458: nop
+     459: nop
+     460: nop
+     461: nop
+     462: nop
+     463: nop
+     464: nop
+     465: nop
+     466: nop
+     467: nop
+     468: nop
+     469: nop
+     470: nop
+     471: nop
+     472: nop
+     473: nop
+     474: nop
+     475: nop
+     476: nop
+     477: nop
+     478: nop
+     479: nop
+     480: nop
+     481: nop
+     482: athrow
+
+  public static boolean array_unsafe(int[], int);
+    Code:
+       0: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+       3: ldc           #54                 // int 19035
+       5: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+       8: ixor
+       9: dup2
+      10: baload
+      11: iconst_1
+      12: iadd
+      13: i2b
+      14: bastore
+      15: sipush        9517
+      18: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      21: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      24: lconst_1
+      25: ladd
+      26: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      29: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      32: ldc           #55                 // int 44802
+      34: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      37: ixor
+      38: dup2
+      39: baload
+      40: iconst_1
+      41: iadd
+      42: i2b
+      43: bastore
+      44: sipush        22401
+      47: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      50: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      53: lconst_1
+      54: ladd
+      55: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      58: getstatic     #61                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      61: aload_0
+      62: arraylength
+      63: invokevirtual #67                 // Method java/io/PrintStream.println:(I)V
+      66: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      69: ldc           #68                 // int 49221
+      71: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      74: ixor
+      75: dup2
+      76: baload
+      77: iconst_1
+      78: iadd
+      79: i2b
+      80: bastore
+      81: sipush        24610
+      84: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      87: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      90: lconst_1
+      91: ladd
+      92: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      95: iload_1
+      96: ifge          295
+      99: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     102: ldc           #69                 // int 60228
+     104: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     107: ixor
+     108: dup2
+     109: baload
+     110: iconst_1
+     111: iadd
+     112: i2b
+     113: bastore
+     114: sipush        30114
+     117: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     120: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     123: lconst_1
+     124: ladd
+     125: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     128: aload_0
+     129: arraylength
+     130: iconst_1
+     131: isub
+     132: istore_3
+     133: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     136: ldc           #70                 // int 32187
+     138: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     141: ixor
+     142: dup2
+     143: baload
+     144: iconst_1
+     145: iadd
+     146: i2b
+     147: bastore
+     148: sipush        16093
+     151: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     154: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     157: lconst_1
+     158: ladd
+     159: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     162: goto          230
+     165: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     168: ldc           #71                 // int 36983
+     170: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     173: ixor
+     174: dup2
+     175: baload
+     176: iconst_1
+     177: iadd
+     178: i2b
+     179: bastore
+     180: sipush        18491
+     183: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     186: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     189: lconst_1
+     190: ladd
+     191: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     194: aload_0
+     195: iload_3
+     196: iaload
+     197: istore_2
+     198: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     201: ldc           #72                 // int 53145
+     203: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     206: ixor
+     207: dup2
+     208: baload
+     209: iconst_1
+     210: iadd
+     211: i2b
+     212: bastore
+     213: sipush        26572
+     216: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     219: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     222: lconst_1
+     223: ladd
+     224: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     227: iinc          3, -1
+     230: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     233: ldc           #73                 // int 3886
+     235: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     238: ixor
+     239: dup2
+     240: baload
+     241: iconst_1
+     242: iadd
+     243: i2b
+     244: bastore
+     245: sipush        1943
+     248: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     251: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     254: lconst_1
+     255: ladd
+     256: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     259: iload_3
+     260: ifge          165
+     263: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     266: ldc           #74                 // int 9848
+     268: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     271: ixor
+     272: dup2
+     273: baload
+     274: iconst_1
+     275: iadd
+     276: i2b
+     277: bastore
+     278: sipush        4924
+     281: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     284: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     287: lconst_1
+     288: ladd
+     289: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     292: goto          393
+     295: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     298: ldc           #75                 // int 47295
+     300: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     303: ixor
+     304: dup2
+     305: baload
+     306: iconst_1
+     307: iadd
+     308: i2b
+     309: bastore
+     310: sipush        23647
+     313: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     316: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     319: lconst_1
+     320: ladd
+     321: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     324: iconst_0
+     325: istore_3
+     326: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     329: ldc           #76                 // int 58748
+     331: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     334: ixor
+     335: dup2
+     336: baload
+     337: iconst_1
+     338: iadd
+     339: i2b
+     340: bastore
+     341: sipush        29374
+     344: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     347: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     350: lconst_1
+     351: ladd
+     352: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     355: aload_0
+     356: iload_3
+     357: iaload
+     358: iconst_2
+     359: idiv
+     360: istore_2
+     361: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     364: ldc           #77                 // int 3484
+     366: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     369: ixor
+     370: dup2
+     371: baload
+     372: iconst_1
+     373: iadd
+     374: i2b
+     375: bastore
+     376: sipush        1742
+     379: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     382: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     385: lconst_1
+     386: ladd
+     387: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     390: aload_0
+     391: arraylength
+     392: istore_3
+     393: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     396: ldc           #78                 // int 7888
+     398: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     401: ixor
+     402: dup2
+     403: baload
+     404: iconst_1
+     405: iadd
+     406: i2b
+     407: bastore
+     408: sipush        3944
+     411: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     414: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     417: lconst_1
+     418: ladd
+     419: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     422: iconst_0
+     423: ireturn
+     424: nop
+     425: nop
+     426: nop
+     427: nop
+     428: nop
+     429: nop
+     430: nop
+     431: nop
+     432: nop
+     433: nop
+     434: nop
+     435: nop
+     436: nop
+     437: nop
+     438: nop
+     439: nop
+     440: nop
+     441: nop
+     442: nop
+     443: nop
+     444: nop
+     445: nop
+     446: nop
+     447: nop
+     448: nop
+     449: nop
+     450: nop
+     451: nop
+     452: athrow
+
+  public static boolean loopAndbranch_safe(int, int);
+    Code:
+       0: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+       3: ldc           #82                 // int 28250
+       5: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+       8: ixor
+       9: dup2
+      10: baload
+      11: iconst_1
+      12: iadd
+      13: i2b
+      14: bastore
+      15: sipush        14125
+      18: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      21: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      24: lconst_1
+      25: ladd
+      26: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      29: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      32: ldc           #83                 // int 46660
+      34: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      37: ixor
+      38: dup2
+      39: baload
+      40: iconst_1
+      41: iadd
+      42: i2b
+      43: bastore
+      44: sipush        23330
+      47: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      50: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      53: lconst_1
+      54: ladd
+      55: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      58: iload_0
+      59: istore_2
+      60: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      63: ldc           #84                 // int 5228
+      65: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      68: ixor
+      69: dup2
+      70: baload
+      71: iconst_1
+      72: iadd
+      73: i2b
+      74: bastore
+      75: sipush        2614
+      78: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      81: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      84: lconst_1
+      85: ladd
+      86: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      89: iload_1
+      90: ifge          222
+      93: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      96: ldc           #85                 // int 35201
+      98: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     101: ixor
+     102: dup2
+     103: baload
+     104: iconst_1
+     105: iadd
+     106: i2b
+     107: bastore
+     108: sipush        17600
+     111: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     114: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     117: lconst_1
+     118: ladd
+     119: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     122: goto          157
+     125: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     128: ldc           #86                 // int 17847
+     130: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     133: ixor
+     134: dup2
+     135: baload
+     136: iconst_1
+     137: iadd
+     138: i2b
+     139: bastore
+     140: sipush        8923
+     143: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     146: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     149: lconst_1
+     150: ladd
+     151: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     154: iinc          2, -1
+     157: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     160: ldc           #87                 // int 22912
+     162: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     165: ixor
+     166: dup2
+     167: baload
+     168: iconst_1
+     169: iadd
+     170: i2b
+     171: bastore
+     172: sipush        11456
+     175: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     178: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     181: lconst_1
+     182: ladd
+     183: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     186: iload_2
+     187: ifgt          125
+     190: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     193: ldc           #88                 // int 41134
+     195: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     198: ixor
+     199: dup2
+     200: baload
+     201: iconst_1
+     202: iadd
+     203: i2b
+     204: bastore
+     205: sipush        20567
+     208: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     211: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     214: lconst_1
+     215: ladd
+     216: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     219: goto          610
+     222: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     225: ldc           #89                 // int 51979
+     227: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     230: ixor
+     231: dup2
+     232: baload
+     233: iconst_1
+     234: iadd
+     235: i2b
+     236: bastore
+     237: sipush        25989
+     240: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     243: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     246: lconst_1
+     247: ladd
+     248: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     251: iinc          1, 10
+     254: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     257: ldc           #90                 // int 65276
+     259: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     262: ixor
+     263: dup2
+     264: baload
+     265: iconst_1
+     266: iadd
+     267: i2b
+     268: bastore
+     269: sipush        32638
+     272: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     275: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     278: lconst_1
+     279: ladd
+     280: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     283: iload_1
+     284: bipush        10
+     286: if_icmplt     449
+     289: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     292: ldc           #91                 // int 5541
+     294: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     297: ixor
+     298: dup2
+     299: baload
+     300: iconst_1
+     301: iadd
+     302: i2b
+     303: bastore
+     304: sipush        2770
+     307: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     310: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     313: lconst_1
+     314: ladd
+     315: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     318: iload_0
+     319: istore_3
+     320: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     323: ldc           #92                 // int 54992
+     325: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     328: ixor
+     329: dup2
+     330: baload
+     331: iconst_1
+     332: iadd
+     333: i2b
+     334: bastore
+     335: sipush        27496
+     338: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     341: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     344: lconst_1
+     345: ladd
+     346: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     349: goto          384
+     352: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     355: ldc           #93                 // int 44309
+     357: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     360: ixor
+     361: dup2
+     362: baload
+     363: iconst_1
+     364: iadd
+     365: i2b
+     366: bastore
+     367: sipush        22154
+     370: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     373: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     376: lconst_1
+     377: ladd
+     378: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     381: iinc          3, -1
+     384: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     387: ldc           #94                 // int 45391
+     389: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     392: ixor
+     393: dup2
+     394: baload
+     395: iconst_1
+     396: iadd
+     397: i2b
+     398: bastore
+     399: sipush        22695
+     402: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     405: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     408: lconst_1
+     409: ladd
+     410: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     413: iload_3
+     414: ifgt          352
+     417: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     420: ldc           #95                 // int 17104
+     422: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     425: ixor
+     426: dup2
+     427: baload
+     428: iconst_1
+     429: iadd
+     430: i2b
+     431: bastore
+     432: sipush        8552
+     435: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     438: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     441: lconst_1
+     442: ladd
+     443: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     446: goto          610
+     449: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     452: ldc           #96                 // int 50543
+     454: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     457: ixor
+     458: dup2
+     459: baload
+     460: iconst_1
+     461: iadd
+     462: i2b
+     463: bastore
+     464: sipush        25271
+     467: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     470: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     473: lconst_1
+     474: ladd
+     475: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     478: iload_0
+     479: ifge          610
+     482: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     485: ldc           #97                 // int 52737
+     487: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     490: ixor
+     491: dup2
+     492: baload
+     493: iconst_1
+     494: iadd
+     495: i2b
+     496: bastore
+     497: sipush        26368
+     500: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     503: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     506: lconst_1
+     507: ladd
+     508: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     511: iload_0
+     512: istore_3
+     513: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     516: ldc           #98                 // int 32082
+     518: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     521: ixor
+     522: dup2
+     523: baload
+     524: iconst_1
+     525: iadd
+     526: i2b
+     527: bastore
+     528: sipush        16041
+     531: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     534: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     537: lconst_1
+     538: ladd
+     539: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     542: goto          577
+     545: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     548: ldc           #99                 // int 51250
+     550: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     553: ixor
+     554: dup2
+     555: baload
+     556: iconst_1
+     557: iadd
+     558: i2b
+     559: bastore
+     560: sipush        25625
+     563: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     566: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     569: lconst_1
+     570: ladd
+     571: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     574: iinc          3, -1
+     577: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     580: ldc           #100                // int 26647
+     582: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     585: ixor
+     586: dup2
+     587: baload
+     588: iconst_1
+     589: iadd
+     590: i2b
+     591: bastore
+     592: sipush        13323
+     595: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     598: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     601: lconst_1
+     602: ladd
+     603: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     606: iload_3
+     607: ifgt          545
+     610: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     613: ldc           #101                // int 4184
+     615: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     618: ixor
+     619: dup2
+     620: baload
+     621: iconst_1
+     622: iadd
+     623: i2b
+     624: bastore
+     625: sipush        2092
+     628: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     631: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     634: lconst_1
+     635: ladd
+     636: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     639: iconst_1
+     640: ireturn
+     641: nop
+     642: nop
+     643: nop
+     644: nop
+     645: nop
+     646: nop
+     647: nop
+     648: nop
+     649: nop
+     650: nop
+     651: nop
+     652: nop
+     653: nop
+     654: nop
+     655: nop
+     656: nop
+     657: nop
+     658: nop
+     659: nop
+     660: nop
+     661: nop
+     662: nop
+     663: nop
+     664: nop
+     665: nop
+     666: nop
+     667: nop
+     668: nop
+     669: athrow
+
+  public static boolean loopAndbranch_unsafe(int, int);
+    Code:
+       0: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+       3: ldc           #106                // int 35935
+       5: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+       8: ixor
+       9: dup2
+      10: baload
+      11: iconst_1
+      12: iadd
+      13: i2b
+      14: bastore
+      15: sipush        17967
+      18: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      21: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      24: lconst_1
+      25: ladd
+      26: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      29: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      32: ldc           #107                // int 52281
+      34: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      37: ixor
+      38: dup2
+      39: baload
+      40: iconst_1
+      41: iadd
+      42: i2b
+      43: bastore
+      44: sipush        26140
+      47: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      50: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      53: lconst_1
+      54: ladd
+      55: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      58: iload_0
+      59: istore_2
+      60: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      63: ldc           #108                // int 30337
+      65: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      68: ixor
+      69: dup2
+      70: baload
+      71: iconst_1
+      72: iadd
+      73: i2b
+      74: bastore
+      75: sipush        15168
+      78: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+      81: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      84: lconst_1
+      85: ladd
+      86: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+      89: iload_1
+      90: ifge          222
+      93: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+      96: ldc           #109                // int 27138
+      98: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     101: ixor
+     102: dup2
+     103: baload
+     104: iconst_1
+     105: iadd
+     106: i2b
+     107: bastore
+     108: sipush        13569
+     111: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     114: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     117: lconst_1
+     118: ladd
+     119: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     122: goto          157
+     125: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     128: ldc           #110                // int 63423
+     130: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     133: ixor
+     134: dup2
+     135: baload
+     136: iconst_1
+     137: iadd
+     138: i2b
+     139: bastore
+     140: sipush        31711
+     143: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     146: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     149: lconst_1
+     150: ladd
+     151: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     154: iinc          2, -1
+     157: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     160: ldc           #111                // int 45627
+     162: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     165: ixor
+     166: dup2
+     167: baload
+     168: iconst_1
+     169: iadd
+     170: i2b
+     171: bastore
+     172: sipush        22813
+     175: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     178: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     181: lconst_1
+     182: ladd
+     183: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     186: iload_2
+     187: ifgt          125
+     190: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     193: ldc           #112                // int 50376
+     195: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     198: ixor
+     199: dup2
+     200: baload
+     201: iconst_1
+     202: iadd
+     203: i2b
+     204: bastore
+     205: sipush        25188
+     208: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     211: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     214: lconst_1
+     215: ladd
+     216: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     219: goto          610
+     222: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     225: ldc           #113                // int 63534
+     227: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     230: ixor
+     231: dup2
+     232: baload
+     233: iconst_1
+     234: iadd
+     235: i2b
+     236: bastore
+     237: sipush        31767
+     240: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     243: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     246: lconst_1
+     247: ladd
+     248: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     251: iinc          1, -10
+     254: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     257: ldc           #114                // int 26401
+     259: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     262: ixor
+     263: dup2
+     264: baload
+     265: iconst_1
+     266: iadd
+     267: i2b
+     268: bastore
+     269: sipush        13200
+     272: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     275: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     278: lconst_1
+     279: ladd
+     280: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     283: iload_1
+     284: bipush        10
+     286: if_icmplt     449
+     289: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     292: ldc           #115                // int 39951
+     294: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     297: ixor
+     298: dup2
+     299: baload
+     300: iconst_1
+     301: iadd
+     302: i2b
+     303: bastore
+     304: sipush        19975
+     307: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     310: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     313: lconst_1
+     314: ladd
+     315: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     318: iload_0
+     319: istore_3
+     320: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     323: ldc           #116                // int 36700
+     325: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     328: ixor
+     329: dup2
+     330: baload
+     331: iconst_1
+     332: iadd
+     333: i2b
+     334: bastore
+     335: sipush        18350
+     338: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     341: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     344: lconst_1
+     345: ladd
+     346: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     349: goto          384
+     352: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     355: ldc           #117                // int 4980
+     357: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     360: ixor
+     361: dup2
+     362: baload
+     363: iconst_1
+     364: iadd
+     365: i2b
+     366: bastore
+     367: sipush        2490
+     370: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     373: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     376: lconst_1
+     377: ladd
+     378: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     381: iinc          3, -1
+     384: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     387: ldc           #118                // int 39741
+     389: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     392: ixor
+     393: dup2
+     394: baload
+     395: iconst_1
+     396: iadd
+     397: i2b
+     398: bastore
+     399: sipush        19870
+     402: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     405: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     408: lconst_1
+     409: ladd
+     410: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     413: iload_3
+     414: ifgt          352
+     417: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     420: ldc           #119                // int 1473
+     422: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     425: ixor
+     426: dup2
+     427: baload
+     428: iconst_1
+     429: iadd
+     430: i2b
+     431: bastore
+     432: sipush        736
+     435: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     438: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     441: lconst_1
+     442: ladd
+     443: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     446: goto          610
+     449: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     452: ldc           #120                // int 9968
+     454: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     457: ixor
+     458: dup2
+     459: baload
+     460: iconst_1
+     461: iadd
+     462: i2b
+     463: bastore
+     464: sipush        4984
+     467: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     470: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     473: lconst_1
+     474: ladd
+     475: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     478: iload_0
+     479: ifge          610
+     482: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     485: ldc           #121                // int 56828
+     487: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     490: ixor
+     491: dup2
+     492: baload
+     493: iconst_1
+     494: iadd
+     495: i2b
+     496: bastore
+     497: sipush        28414
+     500: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     503: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     506: lconst_1
+     507: ladd
+     508: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     511: iload_0
+     512: istore_3
+     513: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     516: ldc           #122                // int 18143
+     518: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     521: ixor
+     522: dup2
+     523: baload
+     524: iconst_1
+     525: iadd
+     526: i2b
+     527: bastore
+     528: sipush        9071
+     531: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     534: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     537: lconst_1
+     538: ladd
+     539: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     542: goto          577
+     545: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     548: ldc           #123                // int 869
+     550: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     553: ixor
+     554: dup2
+     555: baload
+     556: iconst_1
+     557: iadd
+     558: i2b
+     559: bastore
+     560: sipush        434
+     563: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     566: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     569: lconst_1
+     570: ladd
+     571: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     574: iinc          3, -1
+     577: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     580: ldc           #124                // int 46707
+     582: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     585: ixor
+     586: dup2
+     587: baload
+     588: iconst_1
+     589: iadd
+     590: i2b
+     591: bastore
+     592: sipush        23353
+     595: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     598: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     601: lconst_1
+     602: ladd
+     603: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     606: iload_3
+     607: ifgt          545
+     610: getstatic     #13                 // Field edu/cmu/sv/kelinci/Mem.mem:[B
+     613: ldc           #125                // int 29603
+     615: getstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     618: ixor
+     619: dup2
+     620: baload
+     621: iconst_1
+     622: iadd
+     623: i2b
+     624: bastore
+     625: sipush        14801
+     628: putstatic     #18                 // Field edu/cmu/sv/kelinci/Mem.prev_location:I
+     631: getstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     634: lconst_1
+     635: ladd
+     636: putstatic     #22                 // Field edu/cmu/sv/kelinci/Mem.instrCost:J
+     639: iconst_1
+     640: ireturn
+     641: nop
+     642: nop
+     643: nop
+     644: nop
+     645: nop
+     646: nop
+     647: nop
+     648: nop
+     649: nop
+     650: nop
+     651: nop
+     652: nop
+     653: nop
+     654: nop
+     655: nop
+     656: nop
+     657: nop
+     658: nop
+     659: nop
+     660: nop
+     661: nop
+     662: nop
+     663: nop
+     664: nop
+     665: nop
+     666: nop
+     667: nop
+     668: nop
+     669: athrow
+}

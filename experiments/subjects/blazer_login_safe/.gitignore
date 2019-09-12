@@ -1,0 +1,9 @@
+fuzzer-out*
+symexe-out*
+hydiff-out*
+fuzzing/bin/
+fuzzing/bin-instr/
+fuzzing/fuzzer-out*
+*.out
+symexe/bin
+*-log.txt

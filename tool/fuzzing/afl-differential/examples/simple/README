@@ -1,0 +1,83 @@
+wPre-Commands:
+export LLVM_CONFIG=/Users/yannic/repositories/regfuzzsym/llvm-3.4/build/Release+Asserts/bin/llvm-config
+export PATH=/Users/yannic/repositories/regfuzzsym/llvm-3.4/build/Release+Asserts/bin/:$PATH
+export SDKROOT=`xcrun --show-sdk-path`
+
+
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+  
+  FILE *myfile;
+  int i;
+  unsigned char k[1];
+  
+  myfile = fopen(argv[1],"r");
+  
+  fread(k, 1, 1, myfile);
+  printf("n=%d\n", k[0]);
+  
+  int result = test_mod(k[0]);
+  printf("res=%d\n", result);
+  
+  
+  return 0;
+}
+
+int test_mod(int x) {
+  
+  int mod = x % 3;
+  
+  if (mod == 0) {
+    return 0;
+  }
+  if (mod == 1) {
+    return 1;
+  }
+  if (mod == 2) {
+    return 2;
+  }
+  return -1;
+}
+
+
+I compile it with afl-clang with the following output:
+$ make
+[+] Instrumented 15 locations (64-bit, hardened mode, ratio 100%).
+
+I then investigate the maps for two executions:
+
+$ ../../afl/afl-showmap -o trace0.txt ./test tests/test0.txt
+afl-showmap 2.52b by <lcamtuf@google.com>
+[*] Executing './test'...
+
+-- Program output begins --
+n=48
+res=0
+-- Program output ends --
+[+] Captured 3 tuples in 'trace0.txt'.
+
+$ ../../afl/afl-showmap -o trace1.txt ./test tests/test1.txt
+afl-showmap 2.52b by <lcamtuf@google.com>
+[*] Executing './test'...
+
+-- Program output begins --
+n=49
+res=1
+-- Program output ends --
+[+] Captured 5 tuples in 'trace1.txt'.
+
+$ ../../afl/afl-showmap -o trace2.txt ./test tests/test2.txt
+afl-showmap 2.52b by <lcamtuf@google.com>
+[*] Executing './test'...
+
+-- Program output begins --
+n=56
+res=2
+-- Program output ends --
+[+] Captured 4 tuples in 'trace2.txt'.
+
+All of them have different branching behavior.
+
+I started AFL on in_dir with test1.txt and it resulted with the two different files. Success!
+$ /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz -i in_dir -o fuzzer-out -S afl ./test @@

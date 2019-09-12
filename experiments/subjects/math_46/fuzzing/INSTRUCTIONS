@@ -1,0 +1,15 @@
+# Instrument code
+java -cp /Users/yannic/repositories/regfuzzsym/kelinci-regression/instrumentor/build/libs/kelinci.jar edu.cmu.sv.kelinci.instrumentor.Instrumentor -mode REGRESSION -i bin -o bin-instr -skipmain -export-cfgdir cfg -dist-target "test.org.apache.commons.math.complex.Complex1.divide(Ltest/org/apache/commons/math/complex/Complex1;)Ltest/org/apache/commons/math/complex/Complex1;:259"
+
+# Run Kelinci Server
+java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci -dist-target "test.org.apache.commons.math.complex.Complex1.divide(Ltest/org/apache/commons/math/complex/Complex1;)Ltest/org/apache/commons/math/complex/Complex1;:259" FuzzDriver @@
+
+# Test instrumented code
+/Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 1 in_dir/example
+
+# Run Fuzzer
+AFL_IMPORT_FIRST=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 1 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 1 @@
+
+
+# Test specific generated input
+java -cp bin-instr FuzzDriver fuzzer-out/afl/queue/id

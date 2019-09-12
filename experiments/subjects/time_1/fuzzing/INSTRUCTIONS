@@ -1,0 +1,17 @@
+# Instrument code
+java -cp /Users/yannic/repositories/regfuzzsym/kelinci-regression/instrumentor/build/libs/kelinci.jar edu.cmu.sv.kelinci.instrumentor.Instrumentor -mode REGRESSION -i bin -o bin-instr -skipmain -export-cfgdir cfg -dist-target "org.joda.time.MutableDateTime1.add(Lorg/joda/time/DurationFieldType;I)V:639,org.joda.time.MutableDateTime1.addYears(I)V:662,org.joda.time.MutableDateTime1.addMonths(I)V:708,org.joda.time.MutableDateTime1.addWeeks(I)V:731,org.joda.time.MutableDateTime1.addDays(I)V:774,org.joda.time.MutableDateTime1.addHours(I)V:797,org.joda.time.MutableDateTime1.addMinutes(I)V:830,org.joda.time.MutableDateTime1.addSeconds(I)V:863,org.joda.time.MutableDateTime1.addMillis(I)V:898,org.joda.time.Partial1.<init>([Lorg/joda/time/DateTimeFieldType;[ILorg/joda/time/Chronology;)V:219,org.joda.time.Partial1.<init>([Lorg/joda/time/DateTimeFieldType;[ILorg/joda/time/Chronology;)V:224,org.joda.time.Partial1.<init>([Lorg/joda/time/DateTimeFieldType;[ILorg/joda/time/Chronology;)V:240,org.joda.time.Partial1.with(Lorg/joda/time/DateTimeFieldType;I)Lorg/joda/time/Partial1;:449,org.joda.time.field.UnsupportedDurationField1.compareTo(Lorg/joda/time/DurationField;)I:228"
+
+# Run Kelinci Server
+java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci -dist-target "org.joda.time.MutableDateTime1.add(Lorg/joda/time/DurationFieldType;I)V:639,org.joda.time.MutableDateTime1.addYears(I)V:662,org.joda.time.MutableDateTime1.addMonths(I)V:708,org.joda.time.MutableDateTime1.addWeeks(I)V:731,org.joda.time.MutableDateTime1.addDays(I)V:774,org.joda.time.MutableDateTime1.addHours(I)V:797,org.joda.time.MutableDateTime1.addMinutes(I)V:830,org.joda.time.MutableDateTime1.addSeconds(I)V:863,org.joda.time.MutableDateTime1.addMillis(I)V:898,org.joda.time.Partial1.<init>([Lorg/joda/time/DateTimeFieldType;[ILorg/joda/time/Chronology;)V:219,org.joda.time.Partial1.<init>([Lorg/joda/time/DateTimeFieldType;[ILorg/joda/time/Chronology;)V:224,org.joda.time.Partial1.<init>([Lorg/joda/time/DateTimeFieldType;[ILorg/joda/time/Chronology;)V:240,org.joda.time.Partial1.with(Lorg/joda/time/DateTimeFieldType;I)Lorg/joda/time/Partial1;:449,org.joda.time.field.UnsupportedDurationField1.compareTo(Lorg/joda/time/DurationField;)I:228" FuzzDriver @@
+
+# Test instrumented code
+/Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 14 in_dir/example
+
+# Run Fuzzer
+AFL_IMPORT_FIRST=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 14 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 14 @@
+
+AFL_IMPORT_FIRST=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz-import -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 14 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 14 @@
+
+
+# Test specific generated input
+java -cp bin-instr FuzzDriver fuzzer-out/afl/queue/id

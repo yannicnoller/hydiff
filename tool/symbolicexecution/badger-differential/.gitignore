@@ -1,0 +1,10 @@
+tmp/
+build/
+pcMap.txt
+import-statistic.txt
+generation-statistic.txt
+export-statistic.txt
+trie-statistic.txt
+*.dot
+*.pdf
+symexe-out/

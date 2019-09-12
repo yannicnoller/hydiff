@@ -1,0 +1,20 @@
+# Instrument code
+java -cp /Users/yannic/repositories/regfuzzsym/kelinci-regression/instrumentor/build/libs/kelinci.jar edu.cmu.sv.kelinci.instrumentor.Instrumentor -mode REGRESSION -i bin -o bin-instr -skipmain -export-cfgdir cfg -dist-target "v4_org.apache.commons.cli.Parser.parse(Lv4_org/apache/commons/cli/Options;[Ljava/lang/String;Ljava/util/Properties;Z)Lv4_org/apache/commons/cli/CommandLine;:189,v4_org.apache.commons.cli.Parser.processProperties(Ljava/util/Properties;)V:254,v4_org.apache.commons.cli.OptionGroup.toString()Ljava/lang/String;:176,v4_org.apache.commons.cli.OptionBuilder.create()Lv4_org/apache/commons/cli/Option;:335,v4_org.apache.commons.cli.Option.clearValues()V:384,v4_org.apache.commons.cli.Option.getKey()Ljava/lang/String;:194,v4_org.apache.commons.cli.HelpFormatter.printUsage(Ljava/io/PrintWriter;ILjava/lang/String;Lv4_org/apache/commons/cli/Options;)V:282,v4_org.apache.commons.cli.HelpFormatter.renderOptions(Ljava/lang/StringBuffer;ILv4_org/apache/commons/cli/Options;II)Ljava/lang/StringBuffer;:390,v4_org.apache.commons.cli.CommandLine.getOptionValues(Ljava/lang/String;)[Ljava/lang/String;:193,v4_org.apache.commons.cli.CommandLine.addOption(Lv4_org/apache/commons/cli/Option;)V:295"
+
+
+# Run Kelinci Server
+java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci -dist-target "v4_org.apache.commons.cli.Parser.parse(Lv4_org/apache/commons/cli/Options;[Ljava/lang/String;Ljava/util/Properties;Z)Lv4_org/apache/commons/cli/CommandLine;:189,v4_org.apache.commons.cli.Parser.processProperties(Ljava/util/Properties;)V:254,v4_org.apache.commons.cli.OptionGroup.toString()Ljava/lang/String;:176,v4_org.apache.commons.cli.OptionBuilder.create()Lv4_org/apache/commons/cli/Option;:335,v4_org.apache.commons.cli.Option.clearValues()V:384,v4_org.apache.commons.cli.Option.getKey()Ljava/lang/String;:194,v4_org.apache.commons.cli.HelpFormatter.printUsage(Ljava/io/PrintWriter;ILjava/lang/String;Lv4_org/apache/commons/cli/Options;)V:282,v4_org.apache.commons.cli.HelpFormatter.renderOptions(Ljava/lang/StringBuffer;ILv4_org/apache/commons/cli/Options;II)Ljava/lang/StringBuffer;:390,v4_org.apache.commons.cli.CommandLine.getOptionValues(Ljava/lang/String;)[Ljava/lang/String;:193,v4_org.apache.commons.cli.CommandLine.addOption(Lv4_org/apache/commons/cli/Option;)V:295" FuzzDriver @@
+
+# Test instrumented code
+
+/Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 10 in_dir/example
+
+# Run Fuzzer
+AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 10 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 10 @@
+
+AFL_IMPORT_FIRST=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz-import -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 10 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 10 @@
+
+# Test specific generated input
+java -cp bin-instr FuzzDriver fuzzer-out/afl/queue/id
+
+

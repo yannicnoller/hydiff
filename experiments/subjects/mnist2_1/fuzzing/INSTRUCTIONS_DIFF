@@ -1,0 +1,13 @@
+# Instrument code
+java -cp /Users/yannic/repositories/regfuzzsym/kelinci-regression/instrumentor/build/libs/kelinci.jar edu.cmu.sv.kelinci.instrumentor.Instrumentor -mode REGRESSION -i bin -o bin-instr -skipmain
+
+# Run Kelinci Server
+java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci FuzzDiffDriver @@
+
+# Test instrumented code
+/Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface in_dir/input
+
+# Run Fuzzer
+AFL_IMPORT_FIRST=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface @@
+
+AFL_IMPORT_FIRST=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz-import -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface @@

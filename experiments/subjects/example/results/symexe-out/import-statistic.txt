@@ -1,0 +1,2 @@
+# time, file, cost 
+1,/Users/yannic/repositories/regfuzzsym/regression-experiments/example/fuzzing/in_dir/example,2202.0/2202.0

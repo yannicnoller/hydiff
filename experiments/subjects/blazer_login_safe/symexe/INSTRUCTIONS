@@ -1,0 +1,9 @@
+# Generate bytecode
+mkdir bin
+cd src
+javac -g -cp .:../../../../jpf-symbc-regression/build/* *.java -d ../bin
+cd ..
+
+# Run Badger
+mkdir ../symexe-out-0/
+DYLD_LIBRARY_PATH=../../../jpf-symbc-regression/lib java -Xmx10240m -cp ../../../badger-regression/badger/build/*:../../../badger-regression/badger/lib/*:../../../jpf-symbc-regression/build/*:../../../jpf-symbc-regression/lib/*:../../../../yannicnoller/jpf-core/build/* edu.cmu.sv.badger.app.BadgerRunner config_symexe 0 > ../symexe-out-0/spf-log.txt

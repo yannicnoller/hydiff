@@ -1,0 +1,18 @@
+# Instrument code
+java -cp /Users/yannic/repositories/regfuzzsym/kelinci-regression/instrumentor/build/libs/kelinci.jar edu.cmu.sv.kelinci.instrumentor.Instrumentor -mode REGRESSION -i bin -o bin-instr -skipmain -export-cfgdir cfg -dist-target "v2_org.apache.commons.cli.CommandLine.setOpt(Lv2_org/apache/commons/cli/Option;)V:273,v2_org.apache.commons.cli.GnuParser.processArgs(Lv2_org/apache/commons/cli/Option;Ljava/util/ListIterator;)V:188,v2_org.apache.commons.cli.Option.validateOption(Ljava/lang/String;)V:160,v2_org.apache.commons.cli.Option.isValidOpt(C)Z:185,v2_org.apache.commons.cli.Option.isValidChar(C)Z:195,v2_org.apache.commons.cli.Option.setOptionalArg(Z)V:317,v2_org.apache.commons.cli.Option.hasOptionalArg()Z:327,v2_org.apache.commons.cli.Option.clone()Ljava/lang/Object;:539,v2_org.apache.commons.cli.OptionBuilder.hasOptionalArg()Lv2_org/apache/commons/cli/OptionBuilder;:232,v2_org.apache.commons.cli.OptionBuilder.create(Ljava/lang/String;)Lv2_org/apache/commons/cli/Option;:293,v2_org.apache.commons.cli.OptionBuilder.create()Lv2_org/apache/commons/cli/Option;:307,v2_org.apache.commons.cli.PosixParser.parse(Lv2_org/apache/commons/cli/Options;[Ljava/lang/String;Z)Lv2_org/apache/commons/cli/CommandLine;:184,v2_org.apache.commons.cli.PosixParser.processArgs(Lv2_org/apache/commons/cli/Option;Ljava/util/ListIterator;)V:286"
+
+# Run Kelinci Server
+java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci -dist-target "v2_org.apache.commons.cli.CommandLine.setOpt(Lv2_org/apache/commons/cli/Option;)V:273,v2_org.apache.commons.cli.GnuParser.processArgs(Lv2_org/apache/commons/cli/Option;Ljava/util/ListIterator;)V:188,v2_org.apache.commons.cli.Option.validateOption(Ljava/lang/String;)V:160,v2_org.apache.commons.cli.Option.isValidOpt(C)Z:185,v2_org.apache.commons.cli.Option.isValidChar(C)Z:195,v2_org.apache.commons.cli.Option.setOptionalArg(Z)V:317,v2_org.apache.commons.cli.Option.hasOptionalArg()Z:327,v2_org.apache.commons.cli.Option.clone()Ljava/lang/Object;:539,v2_org.apache.commons.cli.OptionBuilder.hasOptionalArg()Lv2_org/apache/commons/cli/OptionBuilder;:232,v2_org.apache.commons.cli.OptionBuilder.create(Ljava/lang/String;)Lv2_org/apache/commons/cli/Option;:293,v2_org.apache.commons.cli.OptionBuilder.create()Lv2_org/apache/commons/cli/Option;:307,v2_org.apache.commons.cli.PosixParser.parse(Lv2_org/apache/commons/cli/Options;[Ljava/lang/String;Z)Lv2_org/apache/commons/cli/CommandLine;:184,v2_org.apache.commons.cli.PosixParser.processArgs(Lv2_org/apache/commons/cli/Option;Ljava/util/ListIterator;)V:286" FuzzDriver @@
+
+# Test instrumented code
+/Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 13 in_dir/example
+
+# Run Fuzzer
+AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 13 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 13 @@
+
+AFL_IMPORT_FIRST=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz-import -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 13 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 13 @@
+
+# Test specific generated input
+java -cp bin-instr FuzzDriver fuzzer-out/afl/queue/id
+
+

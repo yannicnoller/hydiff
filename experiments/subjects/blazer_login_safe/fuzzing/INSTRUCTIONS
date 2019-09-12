@@ -1,0 +1,42 @@
+# Build code
+mkdir bin
+cd src/
+javac -cp ../../../../kelinci-regression/instrumentor/build/libs/kelinci.jar *.java -d ../bin
+cd ..
+
+# Instrument code
+java -jar ../../../kelinci-regression/instrumentor/build/libs/kelinci.jar -mode REGRESSION  -i bin -o bin-instr -skipmain
+
+# Run Kelinci Server
+java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci Login_fuzz @@
+
+# Test instrumented code
+/Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface in_dir/example
+
+# Run Fuzzer
+AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface @@
+
+
+# Test specific generated input2
+java -cp bin-instr Foo_fuzz fuzzer-out/afl/queue/id
+
+
+----
+# Make a AFL (for Yannic macOS)
+CFLAGS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk" CXXFLAGS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk" make
+
+
+---- PURE FUZZER INSTRUCTIONS
+
+
+# Instrument code
+java -jar /Users/yannic/repositories/isstac/kelinci/instrumentor/build/libs/kelinci.jar -mode JUMPS -i bin -o bin-instr-pure
+
+# Run Kelinci Server
+java -cp ./bin-instr-pure/ edu.cmu.sv.kelinci.Kelinci Foo_fuzz_pure @@
+
+# Test instrumented code
+/Users/yannic/repositories/isstac/kelinci/fuzzerside/interface in_dir/example
+
+# Run Fuzzer
+AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/afl-2.51b-badger/afl-fuzz -i in_dir -o fuzzer-out-pure -c nocost -S afl -t 999999999 /Users/yannic/repositories/isstac/kelinci/fuzzerside/interface @@

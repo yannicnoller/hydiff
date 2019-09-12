@@ -1,0 +1,17 @@
+# Instrument code
+java -jar /Users/yannic/repositories/regfuzzsym/kelinci-regression/instrumentor/build/libs/kelinci.jar -mode REGRESSION -i bin -o bin-instr -skipmain -export-cfgdir cfg -dist-target "tcas.TCAS_V10.Own_Below_Threat()Z:85,tcas.TCAS_V10.Own_Above_Threat()Z:90"
+
+# Run Kelinci Server
+java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci -dist-target "tcas.TCAS_V10.Own_Below_Threat()Z:85,tcas.TCAS_V10.Own_Above_Threat()Z:90" FuzzDriver @@
+
+# Test instrumented code
+/Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 2 in_dir/example
+
+# Run Fuzzer
+AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 2 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 2 @@
+
+AFL_IMPORT_FIRST=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/regfuzzsym/afl/afl-fuzz-import -i in_dir -o fuzzer-out -c regression -S afl -t 999999999 -r 2 /Users/yannic/repositories/regfuzzsym/kelinci-regression/fuzzerside/interface -t 2 @@
+
+
+# Test specific generated input
+java -cp bin-instr FuzzDriver fuzzer-out/afl/queue/id

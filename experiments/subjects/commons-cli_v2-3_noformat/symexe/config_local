@@ -1,0 +1,35 @@
+# /Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3
+dir.initial.input=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/fuzzing/in_dir
+dir.export=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe-out/queue
+dir.tmp=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe-out/tmp
+
+stat.print=true
+stat.file.import=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe-out/import-statistic.txt
+stat.file.generation=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe-out/generation-statistic.txt
+stat.file.export=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe-out/export-statistic.txt
+stat.file.trie=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe-out/trie-statistic.txt
+
+jpf.classpath=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe/bin/
+jpf.target=SymbcDriver
+symbolic.dp=z3bitvector
+
+symbolic.shadow=true
+symbolic.shadow.cfg=true
+symbolic.shadow.cfg.dir=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe/bin/
+symbolic.shadow.cfg.ca.class=/Users/yannic/repositories/regfuzzsym/jpf-symbc-regression/build/classes/gov/nasa/jpf/symbc/ChangeAnnotation.class
+symbolic.shadow.cfg.export.dir=/Users/yannic/repositories/regfuzzsym/regression-experiments/commons-cli_v2-3/symexe/cfg
+
+symexe.wait.sec=60
+symexe.delay.sec=0
+symexe.bse.steps=0
+symexe.iterations=10
+
+analysis.method=diff
+analysis.heuristic=new-diff-new-branch-closer-patch-highest-cost-diff-highest-node
+analysis.cost.metric=instructions
+
+io.utils=cli-mixed-array
+io.input.sizes=3 3
+io.initial.id=0
+
+trie.print=true

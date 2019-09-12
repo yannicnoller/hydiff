@@ -1,0 +1,21 @@
+## INSTALLATION ##
+
+source: https://reverse.put.as/2017/07/10/compiling-afl-osx-llvm-mode/
+
+$ export LLVM_CONFIG=/Users/yannic/repositories/regfuzzsym/llvm-3.4/build/Release+Asserts/bin/llvm-config
+$ export PATH=/Users/yannic/repositories/regfuzzsym/llvm-3.4/build/Release+Asserts/bin/:$PATH
+$ export SDKROOT=`xcrun --show-sdk-path`
+$ make
+
+
+
+## EXAMPLE ##
+see README
+
+$ cd examples/simple
+$ make
+$ ../../afl-fuzz -i in_dir -o fuzzer-out -S afl ./test @@
+$ ../../afl-showmap -o trace1.txt ./test tests/test1.txt
+
+
+

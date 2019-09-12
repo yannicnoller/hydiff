@@ -1,0 +1,63 @@
+########################
+# Compile
+javac src/*.java -d bin
+
+
+########################
+# Generate random data
+java -cp bin RandomInputFileGenerator
+
+
+########################
+# Instrument code
+
+Yannic local:
+java -jar /Users/yannic/repositories/isstac/kelinci/instrumentor/build/libs/kelinci.jar -mode JUMPS -i bin -o bin-instr -skipmain
+
+Server HUB:
+java -jar /home/ladmin/kelinci/instrumentor/build/libs/kelinci.jar -mode JUMPS -i bin -o bin-instr -skipmain
+
+
+########################
+# Run Kelinci Server
+java -cp ./bin-instr/ edu.cmu.sv.kelinci.Kelinci FuzzDriver @@
+
+
+########################
+# Test instrumented code
+
+Yannic local:
+/Users/yannic/repositories/isstac/kelinci/fuzzerside/interface in_dir/input
+
+Server HUB:
+/home/ladmin/kelinci/fuzzerside/interface in_dir/input
+
+
+########################
+# Run Fuzzer
+
+Yannic local:
+AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 /Users/yannic/repositories/afl-2.51b-badger/afl-fuzz -i in_dir -o fuzzer-out -c nocost -S afl -t 999999999 /Users/yannic/repositories/isstac/kelinci/fuzzerside/interface @@
+
+Server HUB:
+AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 afl-fuzz -i in_dir -o fuzzer-out -c nocost -S afl -t 999999999 /home/ladmin/kelinci/fuzzerside/interface @@
+
+
+########################
+# Test specific generated input
+java -cp bin FuzzDriver fuzzer-out/afl/queue/id
+
+
+
+----
+# Make a AFL (for Yannic macOS)
+CFLAGS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk" CXXFLAGS="-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk" make
+
+
+---
+start anaconda
+$ conda activate deepfuzzer
+
+---
+run deepfuzzer for example
+$ python java-network-gen.py saved-models/mnist2.h5
