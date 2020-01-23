@@ -2,7 +2,7 @@
     Script to aggregate the results from an experiment.
 
     Input: source folder path, e.g.
-    python3 python3 evaluate.py blazer_login_unsafe/fuzzer-out-
+    python3 evaluate_regression_hydiff.py tcas_v1/hydiff-out- 30 600 30
 
 """
 import sys
@@ -17,100 +17,162 @@ START_INDEX = 1
 
 if __name__ == '__main__':
 
-    if len(sys.argv) != 5:
-        raise Exception("usage: fuzzer-out-dir n timeout stepsize")
+    if len(sys.argv) != 5 and len(sys.argv) != 6:
+        raise Exception("usage: .../hydiff-out- n timeout stepsize [fuzzing-delay]")
 
     fuzzerOutDir = sys.argv[1]
     NUMBER_OF_EXPERIMENTS = int(sys.argv[2])
     EXPERIMENT_TIMEOUT = int(sys.argv[3])
     STEP_SIZE = int(sys.argv[4])
+    if len(sys.argv) == 6:
+        FUZZING_DELAY = int(sys.argv[5])
+    else:
+        FUZZING_DELAY = 0
 
-    fileNamePatternAFL = re.compile(r"sync:spf,src:\d{6}")
-    fileNamePatternSPF = re.compile(r"id:\d{6}")
+    fileNamePatternSPF = re.compile(r"sync:spf,src:\d{6}")
+    fileNamePatternAFL = re.compile(r"sync:afl,src:\d{6}")
+    fileNamePatternID = re.compile(r"id:\d{6}")
 
-    # Read data
-    collected_outDiff_data = []
-    collected_decDiff_data = []
+    # Read data for every experiment run.
     time_first_odiff = {}
     first_odiff_src = {}
+    collected_outDiff_data = []
+    collected_decDiff_data = []
     for i in range(START_INDEX, NUMBER_OF_EXPERIMENTS+1):
         experimentFolderPath = fuzzerOutDir + str(i)
 
-        odiff_collector = {}
-        ddiff_collector = {}
-
-        # Read spf export information.
-        timeInfoSPF = {}
+        # Collect all time info from export info from SPF.
+        spf_time_info = {}
         dataFile = experimentFolderPath + "/spf/export-statistic.txt"
         with open(dataFile,'r') as csvfile:
             csvreader = csv.reader(csvfile, delimiter=',')
             next(csvreader) # skip first row
             for row in csvreader:
-                fileName = fileNamePatternSPF.findall(row[2])[0]
-                timeInfoSPF[fileName] = int(row[0])
+                fileName = fileNamePatternID.findall(row[2])[0]
+                spf_time_info[fileName] = int(row[0])
 
-        dataFile = experimentFolderPath + "/afl/path_costs.csv"
+        # Get first odiff in SPF.
+        time_first_odiff_spf = EXPERIMENT_TIMEOUT
+        dataFile = experimentFolderPath + "/spf-replay/path_costs.csv"
         with open(dataFile,'r') as csvfile:
             csvreader = csv.reader(csvfile, delimiter=';')
-            timeBucket = STEP_SIZE
             next(csvreader) # skip first row
-            previousOutDiffValue = 0
-            previousDecDiffValue = 0
-            currentOutDiffValue = 0
-            currentDecDiffValue = 0
             for row in csvreader:
+                if row[0].startswith("synced file"): continue
+                fileName = row[1]
+                if "sync:spf" in fileName:
+                    fileNameInSPFExportFile = fileNamePatternSPF.findall(row[1])[0].replace("sync:spf,src", "id")
+                    if "+odiff" in fileName or "+crash" in fileName:
+                        time_first_odiff_spf = spf_time_info[fileNameInSPFExportFile]
+                        break
+
+        # Collect all time info for AFL and get time for first odiff in AFL.
+        time_first_odiff_afl = EXPERIMENT_TIMEOUT
+        dataFile = experimentFolderPath + "/afl/path_costs.csv"
+        afl_time_info = {}
+        with open(dataFile,'r') as csvfile:
+            csvreader = csv.reader(csvfile, delimiter=';')
+            next(csvreader) # skip first row
+            for row in csvreader:
+                fileName = row[1]
+                if "sync:spf" in fileName:
+                    fileNameInSPFExportFile = fileNamePatternSPF.findall(row[1])[0].replace("sync:spf,src", "id")
+                    currentTime = spf_time_info[fileNameInSPFExportFile]
+                else:
+                    currentTime = int(row[0]) + FUZZING_DELAY
+                if "+odiff" in fileName or "+crash" in fileName:
+                    if time_first_odiff_afl == EXPERIMENT_TIMEOUT:
+                        time_first_odiff_afl = currentTime
+                fileName = fileNamePatternID.findall(fileName)[0]
+                afl_time_info[fileName] = currentTime
+
+        # Get best time from AFL and SPF
+        if time_first_odiff_afl < time_first_odiff_spf:
+            time_first_odiff[i] = time_first_odiff_afl
+            first_odiff_src[i] = 'afl'
+        elif time_first_odiff_afl > time_first_odiff_spf:
+            time_first_odiff[i] = time_first_odiff_spf
+            first_odiff_src[i] = 'spf'
+        else:
+            time_first_odiff[i] = time_first_odiff_afl
+            first_odiff_src[i] = 'alf=spf'
+
+        # Collect #odiff and #ddiff values
+        odiff_collector = {}
+        ddiff_collector = {}
+        odiff_times = []
+        ddiff_times = []
+        dataFile = experimentFolderPath + "/afl-spf/path_costs.csv"
+        with open(dataFile,'r') as csvfile:
+
+            # collect all odiff and ddiff times
+            csvreader = csv.reader(csvfile, delimiter=';')
+            next(csvreader) # skip first row
+            for row in csvreader:
+                if row[0].startswith("synced file"): continue
                 currentTime = int(row[0])
                 fileName = row[1]
                 containsOutDiff = "+odiff" in fileName or "+crash" in fileName
                 containsDecDiff = "+ddiff" in fileName
 
-                # For inputs by SPF take the actual real time export info.
-                # In case of SPF also update
                 if containsOutDiff:
-                    spfExportId = fileNamePatternAFL.findall(row[1])
-                    if i not in time_first_odiff:
-                        if len(spfExportId) > 0:
-                            spfExportId = spfExportId[0].replace("sync:spf,src", "id")
-                            time_first_odiff[i] = timeInfoSPF[spfExportId]
-                            first_odiff_src[i] = 'spf'
+                    if "sync:afl" in fileName:
+                        id = fileNamePatternAFL.findall(row[1])[0].replace("sync:afl,src", "id")
+                        if id in afl_time_info:
+                            odiff_times.append(afl_time_info[id])
                         else:
-                            time_first_odiff[i] = currentTime
-                            first_odiff_src[i] = 'afl'
-                    elif first_odiff_src[i] == 'afl' and len(spfExportId) > 0:
-                        # if AFL already reported an odiff, check if this spf input was generated earlier:
-                        spfExportId = spfExportId[0].replace("sync:spf,src", "id")
-                        if time_first_odiff[i] > timeInfoSPF[spfExportId]:
-                            time_first_odiff[i] = timeInfoSPF[spfExportId]
-                            first_odiff_src[i] = 'afl->spf'
-
-                if containsOutDiff:
-                    currentOutDiffValue = previousOutDiffValue + 1
+                            odiff_times.append(EXPERIMENT_TIMEOUT)
+                    elif "sync:spf" in fileName:
+                        id = fileNamePatternSPF.findall(row[1])[0].replace("sync:spf,src", "id")
+                        if id in spf_time_info:
+                            odiff_times.append(spf_time_info[id])
+                        else:
+                            odiff_times.append(EXPERIMENT_TIMEOUT)
+                    else: continue
 
                 if containsDecDiff:
-                    currentDecDiffValue = previousDecDiffValue + 1
+                    if "sync:afl" in fileName:
+                        id = fileNamePatternAFL.findall(row[1])[0].replace("sync:afl,src", "id")
+                        if id in afl_time_info:
+                            ddiff_times.append(afl_time_info[id])
+                        else:
+                            ddiff_times.append(EXPERIMENT_TIMEOUT)
+                    elif "sync:spf" in fileName:
+                        id = fileNamePatternSPF.findall(row[1])[0].replace("sync:spf,src", "id")
+                        if id in spf_time_info:
+                            ddiff_times.append(spf_time_info[id])
+                        else:
+                            ddiff_times.append(EXPERIMENT_TIMEOUT)
+                    else: continue
 
-                while (currentTime > timeBucket):
-                    odiff_collector[timeBucket] = previousOutDiffValue
-                    ddiff_collector[timeBucket] = previousDecDiffValue
-                    timeBucket += STEP_SIZE
+        odiff_times.sort()
+        ddiff_times.sort()
 
-                previousOutDiffValue = currentOutDiffValue
-                previousDecDiffValue = currentDecDiffValue
-
-                if timeBucket > EXPERIMENT_TIMEOUT:
-                    break
-
-            # fill data with last known value if not enough information
-            while timeBucket <= EXPERIMENT_TIMEOUT:
-                odiff_collector[timeBucket] = previousOutDiffValue
-                ddiff_collector[timeBucket] = previousDecDiffValue
+        # Collect odiff counts.
+        currentOutDiffValue = 0
+        timeBucket = STEP_SIZE
+        for currentTime in odiff_times:
+            while (currentTime > timeBucket):
+                odiff_collector[timeBucket] = currentOutDiffValue
                 timeBucket += STEP_SIZE
-
+            currentOutDiffValue = currentOutDiffValue + 1
+        while timeBucket <= EXPERIMENT_TIMEOUT:
+            odiff_collector[timeBucket] = currentOutDiffValue
+            timeBucket += STEP_SIZE
         collected_outDiff_data.append(odiff_collector)
-        collected_decDiff_data.append(ddiff_collector)
 
-        if i not in time_first_odiff:
-            time_first_odiff[i] = EXPERIMENT_TIMEOUT
+        # Collect ddiff counts.
+        currentDecDiffValue = 0
+        timeBucket = STEP_SIZE
+        for currentTime in ddiff_times:
+            while (currentTime > timeBucket):
+                ddiff_collector[timeBucket] = currentDecDiffValue
+                timeBucket += STEP_SIZE
+            currentDecDiffValue = currentDecDiffValue + 1
+        while timeBucket <= EXPERIMENT_TIMEOUT:
+            ddiff_collector[timeBucket] = currentDecDiffValue
+            timeBucket += STEP_SIZE
+        collected_decDiff_data.append(ddiff_collector)
 
     # Aggregate dataFile
     mean_values_outDiff = {}
@@ -133,7 +195,7 @@ if __name__ == '__main__':
 
     # Write collected data
     headers = ['seconds', 'avg_odiff', 'ci_odiff', 'avg_ddiff', 'ci_ddiff']
-    outputFileName = fuzzerOutDir + "results-n=" + str(NUMBER_OF_EXPERIMENTS) + "-t=" + str(EXPERIMENT_TIMEOUT) + "-s=" + str(STEP_SIZE) + ".csv"
+    outputFileName = fuzzerOutDir + "results-n=" + str(NUMBER_OF_EXPERIMENTS) + "-t=" + str(EXPERIMENT_TIMEOUT) + "-s=" + str(STEP_SIZE) + "-d=" + str(FUZZING_DELAY) + ".csv"
     print (outputFileName)
     with open(outputFileName, "w") as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=headers)

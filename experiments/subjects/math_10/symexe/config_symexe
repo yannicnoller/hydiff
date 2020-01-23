@@ -17,7 +17,7 @@ symbolic.min_double=-1000.00
 symbolic.shadow=true
 symbolic.shadow.cfg=true
 symbolic.shadow.cfg.dir=./bin/
-symbolic.shadow.cfg.ca.class=../../../jpf-symbc-regression/build/classes/gov/nasa/jpf/symbc/ChangeAnnotation.class
+symbolic.shadow.cfg.ca.class=../../../../tool/symbolicexecution/jpf-symbc-differential/build/classes/gov/nasa/jpf/symbc/ChangeAnnotation.class
 
 symexe.wait.sec=60
 symexe.delay.sec=0

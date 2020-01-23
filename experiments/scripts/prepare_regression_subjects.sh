@@ -1,4 +1,9 @@
-#!/bin/bash
+## prepare_regression_subjects.sh
+#####################################
+# chmod +x prepare_regression_subjects.sh
+# ./prepare_regression_subjects.sh
+#
+
 trap "exit" INT
 
 declare -a subjects=(
@@ -108,40 +113,42 @@ fi
 
 run_counter=0
 total_number_subjects=${#subjects[@]}
+echo
 
-workingDir=$(pwd)
 cd ../subjects
 
 for (( i=0; i<=$(( $total_number_subjects - 1 )); i++ ))
 do
   run_counter=$(( $run_counter + 1 ))
-  echo "   [$run_counter/$total_number_subjects] Build ${subjects[i]}.."
+  echo "[$run_counter/$total_number_subjects] Prepare ${subjects[i]}.."
 
-  cd ${subjects[i]}/fuzzing
-  rm -f build.log
+  cd ./${subjects[i]}/fuzzing
 
   # Generate fuzzing bytecode
   rm -rf bin
   mkdir bin
   cd src
-  javac -cp ${classpaths[i]}:../../../../../tool/fuzzing/kelinci-differential/instrumentor/build/libs/kelinci.jar *.java -d ../bin >> ../build.log
+  javac -cp ${classpaths[i]}:../../../../../tool/fuzzing/kelinci-differential/instrumentor/build/libs/kelinci.jar *.java -d ../bin
   cd ..
 
   # Instrument fuzzing bytecode
   rm -rf bin-instr
-  java -cp ${classpaths[i]}:../../../../tool/fuzzing/kelinci-differential/instrumentor/build/libs/kelinci.jar edu.cmu.sv.kelinci.instrumentor.Instrumentor -mode REGRESSION -i bin -o bin-instr -skipmain -export-cfgdir cfg -dist-target ${fuzz_dist_targets[i]} -skipclass ${instr_skip_classes[i]} >> build.log
+  java -cp ${classpaths[i]}:../../../../tool/fuzzing/kelinci-differential/instrumentor/build/libs/kelinci.jar edu.cmu.sv.kelinci.instrumentor.Instrumentor -mode REGRESSION -i bin -o bin-instr -skipmain -export-cfgdir cfg -dist-target ${fuzz_dist_targets[i]} -skipclass ${instr_skip_classes[i]}
+
+  # Instrument fuzzing bytecode for coverage-based-fuzzing
+  rm -rf bin-instr-cov
+  java -cp ${classpaths[i]}:../../../../tool/fuzzing/kelinci-differential/instrumentor/build/libs/kelinci.jar edu.cmu.sv.kelinci.instrumentor.Instrumentor -mode LABELS -i bin -o bin-instr-cov -skipmain -skipclass ${instr_skip_classes[i]}
 
   cd ../symexe
-  rm -f build.log
 
   # Generate symexe bytecode
   rm -rf bin
   mkdir bin
   cd src
-  javac -g -cp ${classpaths[i]}:../../../../../tool/symbolicexecution/jpf-symbc-differential/build/* *.java -d ../bin >> ../build.log
+  javac -g -cp ${classpaths[i]}:../../../../../tool/symbolicexecution/jpf-symbc-differential/build/* *.java -d ../bin
   cd ../../../
+  echo
 
 done
 
-cd $workingDir
-echo "   Done."
+echo ""

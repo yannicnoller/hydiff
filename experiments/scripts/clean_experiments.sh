@@ -1,4 +1,9 @@
-#!/bin/bash
+## clean_experiments.sh
+#####################################
+# chmod +x clean_experiments.sh
+# ./clean_experiments.sh
+#
+
 trap "exit" INT
 
 declare -a subjects=(
@@ -47,18 +52,24 @@ declare -a subjects=(
 
 run_counter=0
 total_number_subjects=${#subjects[@]}
+echo
 
 for (( i=0; i<=$(( $total_number_subjects - 1 )); i++ ))
 do
   run_counter=$(( $run_counter + 1 ))
-  echo "   [$run_counter/$total_number_subjects] Clean ${subjects[i]}.."
+  echo "[$run_counter/$total_number_subjects] Clean ${subjects[i]}.."
 
   rm -rf ../subjects/${subjects[i]}/fuzzer-out*
+  rm -rf ../subjects/${subjects[i]}/parfuzz-*
   rm -rf ../subjects/${subjects[i]}/symexe-out*
   rm -rf ../subjects/${subjects[i]}/hydiff-out*
+  rm -rf ../subjects/${subjects[i]}/fuzzgrey-out*
+  rm -rf ../subjects/${subjects[i]}/symcov-out*
   rm -rf ../subjects/${subjects[i]}/fuzzing/bin
   rm -rf ../subjects/${subjects[i]}/fuzzing/bin-instr
+  rm -rf ../subjects/${subjects[i]}/fuzzing/bin-instr-cov
   rm -rf ../subjects/${subjects[i]}/symexe/bin
+
 done
 
-echo "   Done."
+echo "Done."

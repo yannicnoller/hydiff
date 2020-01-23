@@ -2,7 +2,7 @@
     Script to aggregate the results from an experiment.
 
     Input: source folder path, e.g.
-    python3 evaluate.py blazer_login_unsafe/fuzzer-out-
+    python3 evaluate_cost_hydiff.py blazer_login_unsafe/hydiff-out- 30 1800 30
 
 """
 import sys
@@ -25,8 +25,8 @@ if __name__ == '__main__':
     EXPERIMENT_TIMEOUT = int(sys.argv[3])
     STEP_SIZE = int(sys.argv[4])
 
-    fileNamePatternAFL = re.compile(r"sync:spf,src:\d{6}")
-    fileNamePatternSPF = re.compile(r"id:\d{6}")
+    fileNamePatternSPF = re.compile(r"sync:spf,src:\d{6}")
+    fileNamePatternID = re.compile(r"id:\d{6}")
 
     # Read data
     collected_data = []
@@ -35,70 +35,115 @@ if __name__ == '__main__':
     for i in range(START_INDEX, NUMBER_OF_EXPERIMENTS+1):
         experimentFolderPath = fuzzerOutDir + str(i)
 
-        # Read spf export information.
-        timeInfoSPF = {}
+        # Collect all time info from export info from SPF.
+        spf_time_info = {}
         dataFile = experimentFolderPath + "/spf/export-statistic.txt"
         with open(dataFile,'r') as csvfile:
             csvreader = csv.reader(csvfile, delimiter=',')
             next(csvreader) # skip first row
             for row in csvreader:
-                fileName = fileNamePatternSPF.findall(row[2])[0]
-                timeInfoSPF[fileName] = int(row[0])
+                fileName = fileNamePatternID.findall(row[2])[0]
+                spf_time_info[fileName] = int(row[0])
 
-        data = {}
+        # Get time first delta > 0 in SPF.
+        time_delta_greater_zero_spf = EXPERIMENT_TIMEOUT
+        dataFile = experimentFolderPath + "/spf-replay/path_costs.csv"
+        with open(dataFile,'r') as csvfile:
+            csvreader = csv.reader(csvfile, delimiter=';')
+            next(csvreader) # skip first row
+            for row in csvreader:
+                if row[0].startswith("synced file"): continue
+                fileName = row[1]
+                if "sync:spf" in fileName:
+                    fileNameInSPFExportFile = fileNamePatternSPF.findall(row[1])[0].replace("sync:spf,src", "id")
+                    if "highscore" in fileName:
+                        time_delta_greater_zero_spf = spf_time_info[fileNameInSPFExportFile]
+                        break
+
+        # Get time first delta > 0 in AFL.
+        time_delta_greater_zero_afl = EXPERIMENT_TIMEOUT
+        dataFile = experimentFolderPath + "/afl/path_costs.csv"
+        with open(dataFile,'r') as csvfile:
+            csvreader = csv.reader(csvfile, delimiter=';')
+            next(csvreader) # skip first row
+            for row in csvreader:
+                currentTime = int(row[0])
+                fileName = row[1]
+                if "highscore" in fileName:
+                    time_delta_greater_zero_afl = currentTime
+                    break
+
+        # Get best time from AFL and SPF
+        if time_delta_greater_zero_afl < time_delta_greater_zero_spf:
+            time_delta_greater_zero[i] = time_delta_greater_zero_afl
+            delta_greater_zero_src[i] = 'afl'
+        elif time_delta_greater_zero_afl > time_delta_greater_zero_spf:
+            time_delta_greater_zero[i] = time_delta_greater_zero_spf
+            delta_greater_zero_src[i] = 'spf'
+        else:
+            time_delta_greater_zero[i] = time_delta_greater_zero_afl
+            delta_greater_zero_src[i] = 'alf=spf'
+
+        # Collect highscores for AFL.
+        data_afl = {}
         dataFile = experimentFolderPath + "/afl/path_costs.csv"
         with open(dataFile,'r') as csvfile:
             csvreader = csv.reader(csvfile, delimiter=';')
             timeBucket = STEP_SIZE
             next(csvreader) # skip first row
-            previousHighscore = 0
             currentHighscore = 0
             for row in csvreader:
                 currentTime = int(row[0])
                 fileName = row[1]
                 containsHighscore = "highscore" in fileName
                 currentScore = int(row[5])
-
-                # For inputs by SPF take the actual real time export info.
-                # In case of SPF also update
-                if currentScore > 0:
-                    spfExportId = fileNamePatternAFL.findall(row[1])
-                    if i not in time_delta_greater_zero:
-                        if len(spfExportId) > 0:
-                            spfExportId = spfExportId[0].replace("sync:spf,src", "id")
-                            time_delta_greater_zero[i] = timeInfoSPF[spfExportId]
-                            delta_greater_zero_src[i] = 'spf'
-                        else:
-                            time_delta_greater_zero[i] = currentTime
-                            delta_greater_zero_src[i] = 'afl'
-                    elif delta_greater_zero_src[i] == 'afl' and len(spfExportId) > 0:
-                        # if AFL already reported an odiff, check if this spf input was generated earlier:
-                        spfExportId = spfExportId[0].replace("sync:spf,src", "id")
-                        if time_delta_greater_zero[i] > timeInfoSPF[spfExportId]:
-                            time_delta_greater_zero[i] = timeInfoSPF[spfExportId]
-                            delta_greater_zero_src[i] = 'afl->spf'
-
+                while currentTime > timeBucket:
+                    data_afl[timeBucket] = currentHighscore
+                    timeBucket += STEP_SIZE
                 if containsHighscore:
                     currentHighscore = currentScore
-
-                while (currentTime > timeBucket):
-                    data[timeBucket] = previousHighscore
-                    timeBucket += STEP_SIZE
-
-                previousHighscore = currentHighscore
-
                 if timeBucket > EXPERIMENT_TIMEOUT:
                     break
-
             # fill data with last known value if not enough information
             while timeBucket <= EXPERIMENT_TIMEOUT:
-                data[timeBucket] = previousHighscore
+                data_afl[timeBucket] = currentHighscore
                 timeBucket += STEP_SIZE
 
-        collected_data.append(data)
+        # Collect highscores for SPF.
+        data_spf = {}
+        dataFile = experimentFolderPath + "/spf-replay/path_costs.csv"
+        with open(dataFile,'r') as csvfile:
+            csvreader = csv.reader(csvfile, delimiter=';')
+            timeBucket = STEP_SIZE
+            next(csvreader) # skip first row
+            currentHighscore = 0
+            for row in csvreader:
+                if row[0].startswith("synced file"): continue
+                fileName = row[1]
+                if not "sync:spf" in fileName: continue
+                id = fileNamePatternSPF.findall(fileName)[0].replace("sync:spf,src", "id")
+                currentTime = spf_time_info[id]
+                containsHighscore = "highscore" in fileName
+                currentScore = int(row[5])
+                while (currentTime > timeBucket):
+                    data_spf[timeBucket] = currentHighscore
+                    timeBucket += STEP_SIZE
+                if containsHighscore:
+                    currentHighscore = currentScore
+                if timeBucket > EXPERIMENT_TIMEOUT:
+                    break
+            # fill data with last known value if not enough information
+            while timeBucket <= EXPERIMENT_TIMEOUT:
+                data_spf[timeBucket] = currentHighscore
+                timeBucket += STEP_SIZE
 
-        if i not in time_delta_greater_zero:
-            time_delta_greater_zero[i] = EXPERIMENT_TIMEOUT
+        # Merge highscores from AFL and SPF.
+        timeBucket = STEP_SIZE
+        data = {}
+        while timeBucket <= EXPERIMENT_TIMEOUT:
+            data[timeBucket] = max(data_afl[timeBucket], data_spf[timeBucket])
+            timeBucket += STEP_SIZE
+        collected_data.append(data)
 
     # Aggregate dataFile
     mean_values = {}

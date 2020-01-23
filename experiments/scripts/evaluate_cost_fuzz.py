@@ -2,7 +2,7 @@
     Script to aggregate the results from an experiment.
 
     Input: source folder path, e.g.
-    python3 evaluate.py blazer_login_unsafe/fuzzer-out-
+    python3 evaluate_cost_fuzz.py blazer_login_unsafe/fuzzer-out- 30 1800 30
 
 """
 import sys
