@@ -1,4 +1,4 @@
-<!-- [![DOI](https://zenodo.org/badge/157902250.svg)](https://zenodo.org/badge/latestdoi/157902250) -->
+[![DOI](https://zenodo.org/badge/207993923.svg)](https://zenodo.org/badge/latestdoi/207993923)
 # HyDiff: Hybrid Differential Software Analysis
 This repository provides the tool and the evaluation subjects for the paper *HyDiff: Hybrid Differential Software Analysis* accepted for the technical track at ICSE'2020. A pre-print of the paper is available [here](https://yannicnoller.github.io/publications/icse2020_noller_hydiff.pdf).
 
