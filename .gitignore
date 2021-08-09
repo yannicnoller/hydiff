@@ -228,3 +228,5 @@ TSWLatexianTemp*
 *.tuo
 
 *.run.xml
+
+*.DS_Store
